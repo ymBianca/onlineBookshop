@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>网上商城</title>
+	<link rel="stylesheet" type="text/css" href="css/index.css" />
+	<link rel="stylesheet" type="text/css" href="css/animate-custom.css" />
+</head>
+<body style="background: #fff url(images/bg.jpg) repeat top">
+
+<div id="container_demo" >
+	<a class="hiddenanchor" id="toregister"></a>
+	<a class="hiddenanchor" id="tologin"></a>
+	<div id="wrapper">
+		<div id="login" class="animate form">
+			<form  autocomplete="on">
+				<h1>欢迎使用XXX后台管理系统</h1>
+				<p>
+					<label for="username" class="uname" data-icon="u" >ni用户名</label>
+					<input id="username" name="username" required="required" type="text" placeholder="请输入用户名"/>
+				</p>
+				<p>
+					<label for="password" class="youpasswd" data-icon="p">你的密码</label>
+					<input id="password" name="password" required="required" type="password" placeholder="请输入密码" />
+				</p>
+				<p class="keeplogin">
+					<input type="checkbox" name="loginkeeping" id="loginkeeping" value="loginkeeping" />
+					<label for="loginkeeping">保持登录状态</label>
+					<button type="button" id="btnLogin" >登录</button>
+				</p>
+
+
+
+			</form>
+		</div>
+	</div>
+</div>
+
+<div class="footer">Copyright NEWER</div>
+<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="static/h-ui/js/H-ui.min.js"></script>
+<script type="text/javascript" src="static/layer/2.4/layer.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $("#btnLogin").click(function(){
+            let adminname=$.trim($("#username").val())
+            let adminpwd=$.trim($("#password").val())
+			//
+            // if(adminname==null){
+            //     layer.alert("用户名不能为空")
+            //     return
+            // }
+			//
+            // if(!adminpwd){
+            //     layer.alert("密码不能为空")
+            //     return
+            // }
+
+
+
+            //发送ajax请求
+            $.ajax({
+                url:"dl",
+                data:{action:"adminlogin",adminname:adminname,adminpwd:adminpwd},
+                dataType:"json",
+                success:function(data){
+                    alert(data)
+                    if(data>0){
+                        location.href="index-2.html"
+                    }else{
+                        layer.alert("账号密码错误")
+                    }
+                }
+            })
+
+
+        })
+    })
+
+  </script>
+
+</body>
+</html>
